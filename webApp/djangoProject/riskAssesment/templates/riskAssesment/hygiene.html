@@ -1,0 +1,283 @@
+
+{% load static %}
+<style>
+
+	.hellow-msg {
+				color:rgba(1, 2, 12, 0.281) !important;
+				padding-top: 10;
+    
+				
+	}
+
+
+
+</style>
+<style>
+	/* Main */
+#menu {
+    width: 100%;
+    margin: 0;
+    padding: 10px 0 0 0;
+    list-style: none;
+	box-shadow: 0 2px 1px #9c9c9c;
+	margin-right: 1220;
+	color: white;
+	padding-top: 15;
+	padding-bottom: 15;
+	background-color:rgb(32, 33, 68);
+}
+
+#menu li {
+    float: left;
+    padding: 0 0 10px 0;
+    position: relative;
+}
+
+#menu a {
+    float: left;
+    height: 25px;
+    padding: 0 25px;
+    color:white;
+    text-transform: uppercase;
+    font: bold 12px/25px Arial, Helvetica;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #000;
+}
+
+#menu li:hover > a {
+    color: #fafafa;
+}
+
+*html #menu li a:hover { /* IE6 */
+    color: white
+}
+
+#menu li:hover > ul {
+    display: block;
+}
+
+.home{
+	background-color:#f4f4f4;
+	font-size: 15;
+	padding-left: 30;
+	padding-right: 30;
+	padding-top: 25;
+	padding-bottom: 38;
+	color: rgb(32, 32, 87);
+}
+
+.logout{
+    color:#7268A6;
+    font-size: 10;
+    float: right;
+    padding-top: 7;
+    padding-bottom: 7;
+    width: 200;
+    background-color: brown;
+    padding-left: 40;
+    margin-right: 10;
+}
+
+
+.logout2{
+        color:white;
+        font-size: 20;
+        float: right;
+        padding-top: 7;
+        padding-bottom: 7;
+        width: 200;
+        margin-right: 40;
+
+}
+
+.logout3{
+        color:white;
+        font-size: 10;
+        float: right;
+        padding-top: 7;
+        padding-bottom: 7;
+        width: 220;
+        background-color: rgb(32, 32, 87);
+        margin-right: 8;
+        padding-left: 17;
+        
+}
+
+/* Sub-menu */
+#menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: none;
+    position: absolute;
+    top: 35px;
+    left: 0;
+    z-index: 99999;
+    background-color: #444;
+    background-image: linear-gradient(#444, #111);
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#menu ul li {
+    float: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    box-shadow: 0 1px 0 #111111,
+                0 2px 0 #777777;
+}
+
+#menu ul li:last-child {
+    box-shadow: none;
+}
+
+#menu ul a {
+    padding: 10px;
+    height: auto;
+    line-height: 1;
+    display: block;
+    white-space: nowrap;
+    float: none;
+    text-transform: none;
+}
+
+*html #menu ul a { /* IE6 */
+    height: 10px;
+    width: 150px;
+}
+
+*:first-child+html #menu ul a { /* IE7 */
+    height: 10px;
+    width: 150px;
+}
+
+#menu ul a:hover {
+    background-color: #0186ba;
+    background-image: linear-gradient(#04acec, #0186ba);
+}
+
+#menu ul li:first-child a {
+    border-radius: 5px 5px 0 0;
+}
+
+#menu ul li:first-child a:after {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: -8px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid #444;
+}
+
+#menu ul li:first-child a:hover:after {
+    border-bottom-color: #04acec;
+}
+
+#menu ul li:last-child a {
+    border-radius: 0 0 5px 5px;
+}
+
+/* Clear floated elements */
+#menu:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+* html #menu             { zoom: 1; } /* IE6 */
+*:first-child+html #menu { zoom: 1; } /* IE7 */
+
+#menu ul li:first-child a:after {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: -8px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid #444;
+}
+
+#menu ul li:first-child a:hover:after {
+    border-bottom-color: #04acec;
+}
+
+
+</style>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+      if ($.browser.msie && $.browser.version.substr(0,1)<7)
+      {
+        $('li').has('ul').mouseover(function(){
+            $(this).children('ul').show();
+            }).mouseout(function(){
+            $(this).children('ul').hide();
+            })
+      }
+    });
+</script>
+
+
+<!DOCTYPE html>
+<html>
+    
+<head>
+	<title>COVID-19 Risk Assesment</title>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+{% csrf_token %}
+<form method="POST" action ="">
+    <nav>
+        <ul id="menu">
+            
+            <button  class="logout"> <a href="{% url 'logout_user' %}"> Sign Out</a></button>
+            <div class="logout2">Hi, {{request.user}}</div>
+        </ul>
+        
+
+    </nav>
+</form>
+
+<body>
+    <br><br>
+    <br><br>
+	<div class="wrap1">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <img src="{% static 'images/page2.png' %}" width="214" height="102">
+            <h1><span class="heading">Covid-19</span> Risk assessment</h1>
+            <h4 class ="subheading">Health</h4>
+                        <p>Do you have any underlying medical conditions that could put you at risk if contracting COVID-19?{{form.medical_condition_risk_to_covid}}
+                        <p>Does anyone in your household have any underlying medical conditions?{{form.medical_condition_in_family}}
+
+                        <h4 class ="subheading">Good Hygiene Practice</h4>
+                        <p>Do you understand the principle of social distancing? {{form.understand_social_distancing}}
+                        <p>Do you understand that you need to wear a mask in public? {{form.wear_mask}}
+                        <p>Do you practise safe hygiene, namely washing and sanitising hands regularly, cough and sneeze etiquette?{{form.practice_safe_hygene}}
+                        <p>Do anything to add , Comment or Request?{{form.comment}}
+                        <p>Do you declare that the above information is true and correct? {{form.terms_and_conditions}}
+                            
+
+                        <input type="submit" value="Submit">
+
+        
+        
+        </form>
+    </div>
+    
+    
+  
+   
+</body>
+</html>
